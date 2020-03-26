@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
+import QuestionsContainer from './QuestionsContainer'
 
 class App extends Component {
 	componentDidMount() {
@@ -9,9 +10,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        Starter Code
-      </div>
+      <QuestionsContainer />
     )
   }
 }
