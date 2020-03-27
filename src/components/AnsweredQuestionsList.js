@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import AnsweredQuestion from './AnsweredQuestion'
 
 class AnsweredQuestionsList extends Component {
   render() {
     return (
       <div>
           {this.props.answeredQuestionsIds.map((id) => (
-            <div id="question" key={id}>
-              <div>Question ID: {id}</div>
-            </div>
+            <AnsweredQuestion id={id} key={id}/>
           ))}
       </div>
     )
