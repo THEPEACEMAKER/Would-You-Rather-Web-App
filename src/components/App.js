@@ -10,10 +10,21 @@ class App extends Component {
 
   render() {
     return (
-      <QuestionsContainer />
+    	<div>
+	    	{this.props.loading === true //only render the QuestionsContainer once the data fetching is finished, and the authedUser is set
+	    	  ? null
+	    	  : <QuestionsContainer />}
+    	</div>
     )
   }
 }
 
-export default connect()(App)
+
+function mapStateToProps ({ authedUser }) {
+  return {
+    loading: authedUser === null // true till the data is fetched, and the authedUser is set
+  }
+}
+
+export default connect(mapStateToProps)(App)
 // Using the connect() function upgrades a component to a container. Containers can read state from the store and dispatch actions. 
