@@ -1,14 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import AnsweredQuestion from './AnsweredQuestion'
+import Tabs from './Tabs'
 
 class AnsweredQuestionsList extends Component {
   render() {
     return (
       <div>
-          {this.props.answeredQuestionsIds.map((id) => (
-            <AnsweredQuestion id={id} key={id}/>
-          ))}
+        <Tabs page='answered' />
+        {this.props.answeredQuestionsIds.map((id) => (
+          <AnsweredQuestion id={id} key={id}/>
+        ))}
       </div>
     )
   }
