@@ -1,4 +1,4 @@
-import { RECEIVE_USERS } from '../actions/users'
+import { RECEIVE_USERS, ADD_ANSWER_TO_USER } from '../actions/users'
 
 /*
 Reducers
@@ -22,6 +22,26 @@ export default function users (state = {}, action) {
       return {
         ...state, // a clone of the old state
         ...action.users // merge the action.users onto this clone
+      }
+    case ADD_ANSWER_TO_USER :
+    	let userAnswersIds = Object.keys(state[action.authedUser].answers)
+    	let userAnswers = {...state[action.authedUser]['answers']} // a clone of the answers
+    	
+    	if (userAnswersIds.includes(action.qid)) { //if the id of the questions is already in the answers
+    		delete userAnswers[action.qid] //remove it
+    	}else {
+    		userAnswers = {
+    			...userAnswers,
+    			[action.qid] : action.answer //add it
+    		}
+    	}
+
+      return {
+        ...state,
+        [action.authedUser]: {
+          ...state[action.authedUser],
+          answers : userAnswers
+        }
       }
     default :
       return state

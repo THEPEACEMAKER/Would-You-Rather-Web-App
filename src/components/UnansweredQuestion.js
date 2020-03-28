@@ -25,7 +25,7 @@ class UnnsweredQuestion extends Component {
     }
 
     const {
-      authorName, authorAvatar, optionOneText, optionTwoText, answer
+      authorName, authorAvatar, optionOneText, optionTwoText
     } = question
 
     return (

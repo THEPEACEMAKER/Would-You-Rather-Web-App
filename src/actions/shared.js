@@ -1,5 +1,5 @@
 import { getInitialData, saveQuestionAnswer } from '../utils/api'
-import { receiveUsers } from './users'
+import { receiveUsers, AddAnswerToUser } from './users'
 import { receiveQuestions, AddAnswerToQuestion } from './questions'
 import { setAuthedUser } from './authedUser'
 
@@ -21,11 +21,13 @@ export function handleInitialData () {
 export function handleAddAnswer (info) {
   return (dispatch) => {
     dispatch(AddAnswerToQuestion(info))
+    dispatch(AddAnswerToUser(info))
 
     return saveQuestionAnswer(info)
       .catch((e) => {
         console.warn('Error in handleAddAnswer: ', e)
         dispatch(AddAnswerToQuestion(info))
+        dispatch(AddAnswerToUser(info))
         alert('There was an error answering that question. Try again.')
       })
   }
