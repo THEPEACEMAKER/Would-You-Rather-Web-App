@@ -210,6 +210,7 @@ button#active {
 
 .unanswered .option:hover {
  	background-color: #ccc;
+ 	cursor: pointer;
 }
 
 .option#selected {
