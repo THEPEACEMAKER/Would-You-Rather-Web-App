@@ -16,10 +16,11 @@ export function votesStat (votes1, votes2) {
 
 
 export function formatQuestion (question, author, authedUser) {
-  const { optionOne, optionTwo } = question
+  const { id, optionOne, optionTwo } = question
   const { name, avatarURL } = author
 
   return {
+    qid: id,
     authorName: name,
     authorAvatar: avatarURL,
     optionOneText: optionOne.text,

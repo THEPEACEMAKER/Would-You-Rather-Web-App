@@ -1,12 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
+import { handleAddAnswer } from '../actions/shared'
 
 class UnnsweredQuestion extends Component {
   handleAnswer = (e, answer) => {
     e.preventDefault()
     console.log(answer)
     // todo: Handle answering a question
+    const { dispatch, question, authedUser } = this.props
+
+    dispatch(handleAddAnswer({
+      qid: question.qid,
+      authedUser,
+      answer
+    }))
   }
 
   render() {

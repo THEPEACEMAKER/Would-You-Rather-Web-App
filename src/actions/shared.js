@@ -1,6 +1,6 @@
-import { getInitialData } from '../utils/api'
+import { getInitialData, saveQuestionAnswer } from '../utils/api'
 import { receiveUsers } from './users'
-import { receiveQuestions } from './questions'
+import { receiveQuestions, AddAnswerToQuestion } from './questions'
 import { setAuthedUser } from './authedUser'
 
 const AUTHED_ID = 'tylermcginnis' // a fixed user for now
@@ -16,4 +16,17 @@ export function handleInitialData () {
 				dispatch(setAuthedUser(AUTHED_ID))
 			})
 	}
+}
+
+export function handleAddAnswer (info) {
+  return (dispatch) => {
+    dispatch(AddAnswerToQuestion(info))
+
+    return saveQuestionAnswer(info)
+      .catch((e) => {
+        console.warn('Error in handleAddAnswer: ', e)
+        dispatch(AddAnswerToQuestion(info))
+        alert('There was an error answering that question. Try again.')
+      })
+  }
 }
