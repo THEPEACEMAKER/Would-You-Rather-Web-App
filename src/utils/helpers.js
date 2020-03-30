@@ -29,3 +29,20 @@ export function formatQuestion (question, author, authedUser) {
     answer: optionOne.votes.includes(authedUser)? 'optionOne' : (optionTwo.votes.includes(authedUser)? 'optionTwo' : null)
   }
 }
+
+export function formatUserRank (user, rank) {
+  const { name, avatarURL, answers, questions } = user
+  const questionsNumber = questions.length
+  const answersNumber = Object.keys(answers).length
+  const score = questionsNumber + answersNumber
+
+
+  return {
+    name,
+    avatarURL,
+    questionsNumber,
+    answersNumber,
+    score,
+    rank
+  }
+}
