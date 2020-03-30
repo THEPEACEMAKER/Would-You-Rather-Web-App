@@ -6,7 +6,7 @@ import Tabs from './Tabs'
 class UnansweredQuestionsList extends Component {
   render() {
     return (
-      <div>
+      <div className="app">
         <Tabs page='unanswered' />
         {this.props.unansweredQuestionsIds.map((id) => (
           <UnansweredQuestion id={id} key={id}/>

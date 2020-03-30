@@ -4,9 +4,7 @@ import AnsweredQuestionsList from './AnsweredQuestionsList'
 
 function QuestionsContainer(props){
   return (
-    <div className="app">
-			<UnansweredQuestionsList />
-    </div>
+		<UnansweredQuestionsList />
   )
 }
 
