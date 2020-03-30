@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import authedUser from './authedUser'
 import users from './users'
 import questions from './questions'
+import { loadingBarReducer } from 'react-redux-loading'
 
 // Redux's combineReducers is responsible for invoking all the other reducers, passing them the portion of their state that they care about.
 // We're making one root reducer, by composing a bunch of other reducers together.
@@ -9,7 +10,8 @@ import questions from './questions'
 export default combineReducers({
   authedUser,
   users,
-  questions
+  questions,
+  loadingBar: loadingBarReducer,
 })
 
 /*
