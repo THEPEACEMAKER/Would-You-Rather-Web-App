@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/shared'
+import { Redirect } from 'react-router-dom'
 
 class AddQuestion extends Component {
   state = {
     optionOneText: '',
-    optionTwoText: ''
+    optionTwoText: '',
+    toHome: false,
   }
   handleOptionOneChange = (e) => {
     const optionOneText = e.target.value
@@ -36,12 +38,15 @@ class AddQuestion extends Component {
     this.setState(() => ({
       optionOneText: '',
       optionTwoText: '',
+      toHome: true,
     }))
   }
   render() {
-    const { optionOneText, optionTwoText } = this.state
+    const { optionOneText, optionTwoText, toHome } = this.state
 
-    {/* todo: Redirect to / if submitted */}
+    if (toHome === true) {
+      return <Redirect to='/' />
+    }
 
     const optionOneLeft = 180 - optionOneText.length
     const optionTwoLeft = 180 - optionTwoText.length
