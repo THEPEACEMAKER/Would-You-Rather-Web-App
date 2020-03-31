@@ -417,3 +417,30 @@ textarea {
     flex-wrap: wrap;
     justify-content: center;
 }
+
+/* Add Question section */
+#submit {
+	float: none; height: 80%; border-radius: 5px;
+}
+
+#submit-div {
+	height: 18%;
+}
+
+#form-body {
+	height: 70%;
+}
+
+.input-div {
+	text-align: initial;
+}
+
+.letter-counter {
+    text-align: end;
+    line-height: 13px;
+    margin-bottom: -13px;
+}
+
+#submit:disabled {
+	background-color: buttonface;
+}
