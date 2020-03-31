@@ -1,5 +1,5 @@
 import { getInitialData, saveQuestionAnswer, saveQuestion } from '../utils/api'
-import { receiveUsers, AddAnswerToUser } from './users'
+import { receiveUsers, AddAnswerToUser, AddQuestionToUser } from './users'
 import { receiveQuestions, AddAnswerToQuestion, AddQuestion } from './questions'
 import { setAuthedUser } from './authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
@@ -38,9 +38,12 @@ export function handleAddAnswer (info) {
 
 export function handleAddQuestion (question) {
   return (dispatch) => {
+    dispatch(showLoading())
     return saveQuestion(question)
       .then((question) => {
         dispatch(AddQuestion(question))
+        dispatch(AddQuestionToUser(question))
+        dispatch(hideLoading())
       })
   }
 }
