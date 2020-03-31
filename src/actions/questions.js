@@ -1,5 +1,6 @@
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
 export const ADD_ANSWER_TO_QUESTION = 'ADD_ANSWER_TO_QUESTION'
+export const ADD_QUESTION = 'ADD_QUESTION'
 
 // action creator
 export function receiveQuestions (questions) {
@@ -15,5 +16,12 @@ export function AddAnswerToQuestion ({ qid, authedUser, answer }) {
     qid,
     authedUser,
     answer
+  }
+}
+
+export function AddQuestion (question) {
+  return {
+    type: ADD_QUESTION,
+    question
   }
 }

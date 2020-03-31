@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { handleAddQuestion } from '../actions/shared'
 
 class AddQuestion extends Component {
   state = {
@@ -23,11 +25,13 @@ class AddQuestion extends Component {
     e.preventDefault()
 
     const { optionOneText, optionTwoText } = this.state
+    const { dispatch, authedUser } = this.props
 
-    // todo: Add question to Store
-
-    console.log('optionOneText: ', optionOneText)
-    console.log('optionTwoText: ', optionTwoText)
+    dispatch(handleAddQuestion({
+      optionOneText,
+      optionTwoText,
+      author: authedUser,
+    }))
 
     this.setState(() => ({
       optionOneText: '',
@@ -102,4 +106,10 @@ class AddQuestion extends Component {
   }
 }
 
-export default AddQuestion
+function mapStateToProps ({ authedUser }) {
+  return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(AddQuestion)

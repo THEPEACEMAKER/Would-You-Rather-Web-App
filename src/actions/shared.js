@@ -1,6 +1,6 @@
-import { getInitialData, saveQuestionAnswer } from '../utils/api'
+import { getInitialData, saveQuestionAnswer, saveQuestion } from '../utils/api'
 import { receiveUsers, AddAnswerToUser } from './users'
-import { receiveQuestions, AddAnswerToQuestion } from './questions'
+import { receiveQuestions, AddAnswerToQuestion, AddQuestion } from './questions'
 import { setAuthedUser } from './authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
@@ -32,6 +32,15 @@ export function handleAddAnswer (info) {
         dispatch(AddAnswerToQuestion(info))
         dispatch(AddAnswerToUser(info))
         alert('There was an error answering that question. Try again.')
+      })
+  }
+}
+
+export function handleAddQuestion (question) {
+  return (dispatch) => {
+    return saveQuestion(question)
+      .then((question) => {
+        dispatch(AddQuestion(question))
       })
   }
 }
