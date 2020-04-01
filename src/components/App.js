@@ -4,6 +4,7 @@ import { handleInitialData } from '../actions/shared'
 import QuestionsContainer from './QuestionsContainer'
 import LoadingBar from 'react-redux-loading'
 import Login from './Login'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 
 class App extends Component {
@@ -13,12 +14,14 @@ class App extends Component {
 
   render() {
     return (
-    	<div>
-        <LoadingBar />
-	    	{this.props.loading === true //only render the QuestionsContainer once the data fetching is finished, and the authedUser is set
-	    	  ? <Login />
-	    	  : <QuestionsContainer />}
-    	</div>
+      <Router>
+      	<div>
+          <LoadingBar />
+  	    	{this.props.loading === true //only render the QuestionsContainer once the data fetching is finished, and the authedUser is set
+  	    	  ? <Login />
+  	    	  : <QuestionsContainer />}
+      	</div>
+      </Router>
     )
   }
 }

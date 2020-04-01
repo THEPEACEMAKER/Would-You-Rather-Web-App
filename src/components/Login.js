@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import UserAvatar from './UserAvatar'
+import { setAuthedUser } from '../actions/authedUser'
+import { withRouter } from 'react-router-dom'
 
 class Login extends Component {
   state = {
@@ -15,13 +17,24 @@ class Login extends Component {
   }
   handleSubmit = (e) => {
     e.preventDefault()
-    // handle submit
+
+    const { selected } = this.state
+    const { dispatch } = this.props
+
+    this.props.history.push('/')
+
+    dispatch(setAuthedUser(selected))
+
+    this.setState(() => ({
+      selected: '',
+    }))
   }
   render() {
     const { selected } = this.state
+
     return (
       <div className="app">
-        <form id="users-form">
+        <form id="users-form" onSubmit={this.handleSubmit}>
           <div id="question">
             <div className="question-head">
               <div className="question-title">
@@ -53,4 +66,4 @@ function mapStateToProps ({ users }) {
   }
 }
 
-export default connect(mapStateToProps)(Login)
+export default withRouter(connect(mapStateToProps)(Login))

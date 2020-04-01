@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { removeAuthedUser } from '../actions/authedUser'
 
 class Nav extends Component {
   handleLogOut = (e) => {
     e.preventDefault()
 
-    console.log('log out')
-    // todo: Handle loging out
+    const { dispatch } = this.props
+
+    dispatch(removeAuthedUser())
   }
 
   render() {
@@ -43,6 +45,7 @@ class Nav extends Component {
                       		<img 
                       			src={`${process.env.PUBLIC_URL}/${avatarURL}.png`}
                       			alt={`Avatar of ${name}`}
+                            title={name}
                       		/>
                       		logout
                       	</NavLink>

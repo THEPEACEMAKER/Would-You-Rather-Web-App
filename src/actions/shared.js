@@ -1,10 +1,8 @@
 import { getInitialData, saveQuestionAnswer, saveQuestion } from '../utils/api'
 import { receiveUsers, AddAnswerToUser, AddQuestionToUser } from './users'
 import { receiveQuestions, AddAnswerToQuestion, AddQuestion } from './questions'
-import { setAuthedUser } from './authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
-const AUTHED_ID = null // a fixed user for now
 
 // Redux thunk action creator : cause we need to make an asynchronous request
 export function handleInitialData () {
@@ -15,7 +13,6 @@ export function handleInitialData () {
 				// dispatch: takes an action creator that takes a value, and then send the action to the reducer, which applies this action
 				dispatch(receiveUsers(users))
 				dispatch(receiveQuestions(questions))
-				dispatch(setAuthedUser(AUTHED_ID))
         dispatch(hideLoading())
 			})
 	}
