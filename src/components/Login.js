@@ -1,18 +1,24 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import UserAvatar from './UserAvatar'
 
 class Login extends Component {
   state = {
     selected: '',
   }
   handleChange = (e) => {
-    // handle change
+    const selected = e.target.getAttribute('value')
+
+    this.setState(() => ({
+      selected
+    }))
   }
   handleSubmit = (e) => {
     e.preventDefault()
     // handle submit
   }
   render() {
+    const { selected } = this.state
     return (
       <div className="app">
         <form id="users-form">
@@ -25,12 +31,12 @@ class Login extends Component {
             <div className="question-body">
               <div id="imgs-div">
                 {this.props.users.map((id) => (
-                  <p key={id}>{id}</p>
+                  <UserAvatar key={id} id={id} selected={selected} onChange={this.handleChange} />
                 ))}
               </div>
             </div>
             <div id="submit-div">
-                <button type="submit" id="submit" disabled>submit</button>
+                <button type="submit" id="submit" disabled={selected === ''} >submit</button>
             </div>
           </div>
         </form>
