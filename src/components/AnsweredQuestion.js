@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
+import { Link } from 'react-router-dom'
 
 class AnsweredQuestion extends Component {
   render() {
-    const { question } = this.props
+    const { question, id } = this.props
 
     if (question === null) {
       return <p>This question doesn't exist</p>
@@ -20,18 +21,20 @@ class AnsweredQuestion extends Component {
 
     return (
       <div id="question">
-         <div className="question-head">
-             <div className="question-author">
-                 <img
-                    src={`${process.env.PUBLIC_URL}/${authorAvatar}.png`}
-                    alt={`Avatar of ${authorName}`}
-                  />
-                 <p>{authorName} : </p>
-             </div>
-             <div className="question-title">
-                 <p>Would You Rather !!?</p>
-             </div>
-         </div>
+        <Link to={`/questions/${id}`}>
+           <div className="question-head">
+               <div className="question-author">
+                   <img
+                      src={`${process.env.PUBLIC_URL}/${authorAvatar}.png`}
+                      alt={`Avatar of ${authorName}`}
+                    />
+                   <p>{authorName} : </p>
+               </div>
+               <div className="question-title">
+                   <p>Would You Rather !!?</p>
+               </div>
+           </div>
+        </Link>
          <div className="question-body">
              <div className="option"
              id={answer === 'optionOne'? 'selected' : null}>
@@ -62,6 +65,7 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
 
   return {
     authedUser,
+    id,
     question: question
       ? formatQuestion(question, users[question.author], authedUser)
       : null
