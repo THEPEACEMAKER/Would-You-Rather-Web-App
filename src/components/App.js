@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import QuestionsContainer from './QuestionsContainer'
 import LoadingBar from 'react-redux-loading'
+import Login from './Login'
+
 
 class App extends Component {
 	componentDidMount() {
@@ -14,7 +16,7 @@ class App extends Component {
     	<div>
         <LoadingBar />
 	    	{this.props.loading === true //only render the QuestionsContainer once the data fetching is finished, and the authedUser is set
-	    	  ? null
+	    	  ? <Login />
 	    	  : <QuestionsContainer />}
     	</div>
     )

@@ -4,7 +4,7 @@ import { receiveQuestions, AddAnswerToQuestion, AddQuestion } from './questions'
 import { setAuthedUser } from './authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
-const AUTHED_ID = 'tylermcginnis' // a fixed user for now
+const AUTHED_ID = null // a fixed user for now
 
 // Redux thunk action creator : cause we need to make an asynchronous request
 export function handleInitialData () {
