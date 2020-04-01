@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
-import QuestionsContainer from './QuestionsContainer'
+import Dashboard from './Dashboard'
 import LoadingBar from 'react-redux-loading'
 import Login from './Login'
 import { BrowserRouter as Router } from 'react-router-dom'
@@ -19,7 +19,7 @@ class App extends Component {
           <LoadingBar />
   	    	{this.props.loading === true //only render the QuestionsContainer once the data fetching is finished, and the authedUser is set
   	    	  ? <Login />
-  	    	  : <QuestionsContainer />}
+  	    	  : <Dashboard />}
       	</div>
       </Router>
     )

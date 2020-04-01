@@ -1,21 +1,29 @@
-import React, { Fragment } from 'react'
-import { Route } from 'react-router-dom'
+import React, { Component } from 'react'
 import UnansweredQuestionsList from './UnansweredQuestionsList'
 import AnsweredQuestionsList from './AnsweredQuestionsList'
-import Leaderboard from './Leaderboard'
-import AddQuestion from './AddQuestion'
-import Nav from './Nav'
 
-function QuestionsContainer(props){
-  return (
-  	<Fragment>
-      <Nav />
-      <Route path='/' exact component={UnansweredQuestionsList} />
-      <Route path='/answered' component={AnsweredQuestionsList} />
-      <Route path='/add' component={AddQuestion} />
-      <Route path='/leaderboard' component={Leaderboard} />
-	</Fragment>
-  )
+class QuestionsContainer extends Component {
+  state = {
+    selected: 'Unanswered',
+  }
+  handleChange = (e) => {
+    const selected = e.target.textContent
+
+    this.setState(() => ({
+      selected
+    }))
+  }
+  render() {
+    const { selected } = this.state
+
+    return (
+    	<div>
+    	{selected === 'Unanswered'
+    	  ? <UnansweredQuestionsList onChange={this.handleChange} />
+    	  : <AnsweredQuestionsList onChange={this.handleChange} />}
+  	  </div>
+    )
+  }
 }
 
 export default QuestionsContainer

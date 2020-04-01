@@ -7,7 +7,7 @@ class UnansweredQuestionsList extends Component {
   render() {
     return (
       <div className="app">
-        <Tabs page='unanswered' />
+        <Tabs page='unanswered' onChange={this.props.onChange} />
         {this.props.unansweredQuestionsIds.map((id) => (
           <UnansweredQuestion id={id} key={id}/>
         ))}
@@ -16,14 +16,15 @@ class UnansweredQuestionsList extends Component {
   }
 }
 
-function mapStateToProps ({ questions, authedUser }) {
+function mapStateToProps ({ questions, authedUser }, { onChange }) {
   const questionsIds = Object.keys(questions)
   const unansweredQuestions = questionsIds
   .filter(questionId => !(questions[questionId].optionOne.votes.includes(authedUser) || questions[questionId].optionTwo.votes.includes(authedUser)))
 
   return {
     unansweredQuestionsIds: unansweredQuestions
-      .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+      .sort((a,b) => questions[b].timestamp - questions[a].timestamp),
+    onChange,
   }
 }
 
