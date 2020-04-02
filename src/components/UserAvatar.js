@@ -1,20 +1,18 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 
-class UserAvatar extends Component {
-  render() {
-    const { userId, name, avatarURL, selected, onChange } = this.props
-    return (
-      <img
-        src={`${process.env.PUBLIC_URL}/${avatarURL}.png`}
-        alt={`Avatar of ${name}`}
-        title={name}
-        value={`${userId}`}
-        onClick={onChange}
-        id={selected === userId ? 'active' : null}
-      />
-    )
-  }
+function UserAvatar(props){
+  const { userId, name, avatarURL, selected, onChange } = props
+  return (
+    <img
+      src={`${process.env.PUBLIC_URL}/${avatarURL}.png`}
+      alt={`Avatar of ${name}`}
+      title={name}
+      value={`${userId}`}
+      onClick={onChange}
+      id={selected === userId ? 'active' : null}
+    />
+  )
 }
 
 function mapStateToProps ({ users }, { id, selected, onChange }) {
