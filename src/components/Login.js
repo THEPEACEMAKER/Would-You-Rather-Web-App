@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import UserAvatar from './UserAvatar'
 import { setAuthedUser } from '../actions/authedUser'
-import { withRouter } from 'react-router-dom'
 
 class Login extends Component {
   state = {
@@ -20,8 +19,6 @@ class Login extends Component {
 
     const { selected } = this.state
     const { dispatch } = this.props
-
-    this.props.history.push('/')
 
     dispatch(setAuthedUser(selected))
 
@@ -66,4 +63,4 @@ function mapStateToProps ({ users }) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Login))
+export default connect(mapStateToProps)(Login)
