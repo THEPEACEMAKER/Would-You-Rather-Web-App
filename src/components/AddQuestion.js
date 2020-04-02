@@ -9,19 +9,8 @@ class AddQuestion extends Component {
     optionTwoText: '',
     toHome: false,
   }
-  handleOptionOneChange = (e) => {
-    const optionOneText = e.target.value
-
-    this.setState(() => ({
-      optionOneText
-    }))
-  }
-  handleOptionTwoChange = (e) => {
-    const optionTwoText = e.target.value
-
-    this.setState(() => ({
-      optionTwoText
-    }))
+  handleOptionChange = (e) => {
+    this.setState({[e.target.name]: e.target.value});
   }
   handleSubmit = (e) => {
     e.preventDefault()
@@ -67,10 +56,11 @@ class AddQuestion extends Component {
                   <textarea
                     placeholder="Option 1 goes here"
                     value={optionOneText}
-                    onChange={this.handleOptionOneChange}
+                    onChange={this.handleOptionChange}
                     maxLength={180}
                     cols="42"
                     rows="7"
+                    name="optionOneText"
                   />
                   {optionOneLeft <= 100 && (
                     <div className="letter-counter">
@@ -84,10 +74,11 @@ class AddQuestion extends Component {
                   <textarea
                     placeholder="Option 2 goes here"
                     value={optionTwoText}
-                    onChange={this.handleOptionTwoChange}
+                    onChange={this.handleOptionChange}
                     maxLength={180}
                     cols="42"
                     rows="7"
+                    name="optionTwoText"
                   />
                   {optionTwoLeft <= 100 && (
                     <div className="letter-counter">
