@@ -5,6 +5,7 @@ import AnsweredQuestionsList from './AnsweredQuestionsList'
 class QuestionsContainer extends Component {
   state = {
     selected: 'Unanswered',
+    answered: [],
   }
   handleChange = (e) => {
     const selected = e.target.textContent
@@ -13,13 +14,31 @@ class QuestionsContainer extends Component {
       selected
     }))
   }
+  handleAnswerInState = (id) => {
+    this.setState((prevState) => (
+      {
+        answered: prevState.answered.includes(id)
+          ? prevState.answered.filter((qid) => qid !== id)
+          : prevState.answered.concat([id])
+      }
+    ))
+  }
+  resetAnswered = () => {
+    this.setState(() => ({
+      answered: []
+    }))
+  }
   render() {
-    const { selected } = this.state
+    const { selected, answered } = this.state
 
     return (
     	<div>
     	{selected === 'Unanswered'
-    	  ? <UnansweredQuestionsList onChange={this.handleChange} />
+        ? <UnansweredQuestionsList
+          onChange={this.handleChange}
+          answered={answered}
+          onAnswer={this.handleAnswerInState}
+          resetAnswered={this.resetAnswered} />
     	  : <AnsweredQuestionsList onChange={this.handleChange} />}
   	  </div>
     )

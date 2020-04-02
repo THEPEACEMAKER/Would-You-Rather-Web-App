@@ -9,13 +9,17 @@ class UnnsweredQuestion extends Component {
     e.preventDefault()
     console.log(answer)
     // todo: Handle answering a question
-    const { dispatch, question, authedUser } = this.props
+    const { dispatch, question, authedUser, id, onAnswer } = this.props
+
+    onAnswer(id)
 
     dispatch(handleAddAnswer({
       qid: question.qid,
       authedUser,
       answer
-    }))
+    })).catch(() => {
+        onAnswer(id)
+      })
   }
 
   render() {
@@ -62,11 +66,12 @@ class UnnsweredQuestion extends Component {
   }
 }
 
-function mapStateToProps ({authedUser, users, questions}, { id }) {
+function mapStateToProps ({authedUser, users, questions}, { id, onAnswer }) {
   const question = questions[id]
 
   return {
     authedUser,
+    onAnswer,
     id,
     question: question
       ? formatQuestion(question, users[question.author], authedUser)
