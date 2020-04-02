@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../utils/helpers'
 import { handleAddAnswer } from '../actions/shared'
+import { Link } from 'react-router-dom'
 
 class UnnsweredQuestion extends Component {
   handleAnswer = (e, answer) => {
@@ -18,7 +19,7 @@ class UnnsweredQuestion extends Component {
   }
 
   render() {
-    const { question } = this.props
+    const { question, id } = this.props
 
     if (question === null) {
       return <p>This question doesn't exist</p>
@@ -30,6 +31,7 @@ class UnnsweredQuestion extends Component {
 
     return (
       <div id="question" className="unanswered">
+        <Link to={`/questions/${id}`}>
          <div className="question-head">
              <div className="question-author">
                  <img
@@ -42,6 +44,7 @@ class UnnsweredQuestion extends Component {
                  <p>Would You Rather !!?</p>
              </div>
          </div>
+        </Link>
          <div className="question-body">
              <div className="option"
              onClick={(e) => this.handleAnswer(e, 'optionOne')}>
@@ -64,6 +67,7 @@ function mapStateToProps ({authedUser, users, questions}, { id }) {
 
   return {
     authedUser,
+    id,
     question: question
       ? formatQuestion(question, users[question.author], authedUser)
       : null
