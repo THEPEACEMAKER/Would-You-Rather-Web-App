@@ -47,7 +47,7 @@ class Nav extends Component {
                       			alt={`Avatar of ${name}`}
                             title={name}
                       		/>
-                      		logout
+                      		{`(${name}) logout`}
                       	</NavLink>
                       </li>
                   </ul>
